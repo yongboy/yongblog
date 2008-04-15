@@ -1,0 +1,43 @@
+application: yongboy8
+version: 3
+runtime: python
+api_version: 1
+
+handlers:
+- url: /style/(.*)
+  static_files: style/\1
+  upload: style/(.*)
+  
+- url: /script/(.*)
+  static_files: script/\1
+  upload: script/(.*)
+
+- url: /images/(.*)
+  static_files: images/\1
+  upload: images/(.*)
+
+- url: /exception/(.*)
+  static_files: exception/\1
+  upload: exception/(.*)
+  
+- url: /source/(.*)
+  static_files: source/\1
+  upload: source/(.*)
+  
+- url: /HtmlEditor/(.*)
+  static_files: HtmlEditor/\1
+  upload: HtmlEditor/(.*)
+
+- url: /HtmlEditor/images/(.*)
+  static_files: HtmlEditor/images/\1
+  upload: HtmlEditor/images/(.*)
+  
+- url: /reply/.*
+  script: reply.py
+
+- url: /tags/.*
+  script: tags.py
+  
+
+- url: /.*
+  script: hi.py

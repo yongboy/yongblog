@@ -1,0 +1,43 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Yongboy's Tiny blog</title>
+<link href="/style/style.css" rel="stylesheet" type="text/css" />
+<script src="/script/blog.js" type="text/javascript"></script>
+<style>
+	.oneReply{ border:1px dotted #999999; margin-right:260px;}
+	.reponse{ border-bottom:1px dotted  #003300; }
+</style>
+</head>
+<body>
+	<div class="replyDiv">
+	{% for reply in replys %}	
+	<div class="oneReply">
+    	<div class="reponse">Response from : 
+        {{reply.author.nickname}}
+        {% ifequal reply.author null%}
+        anonymous
+        {% endifequal%}
+        {% ifnotequal reply.author null%}
+        anonymous
+        {% endifnotequal%}
+        </div>
+        <div class="replyContent">{{reply.content}}</div>
+    </div>
+	{% endfor %}
+	</div>
+    <div class="addReply">
+    <form action="/reply/add" method="post">
+    	<input type="hidden" name="upid" value="{{upid}}">
+    	Homepage:<br>
+   	    <input type="text" name="url" size="30" maxlength="50">
+      <br>
+Content:<br>
+<textarea name="content" rows="6" cols="45"></textarea>
+<br>
+
+<input type="submit" value="Submit">
+</form>
+    </div>
+</body>
+</html>

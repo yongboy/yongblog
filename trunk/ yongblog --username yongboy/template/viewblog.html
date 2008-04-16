@@ -27,9 +27,19 @@ tags :
 </div>
 </td></tr>
         <tr>
-          <td align="right"> <a href='/edit/{{greeting.key}}'>Edit</a>
+          <td align="right">
+          	{% ifequal curruser greeting.author%}
+          	<a href='/edit/{{greeting.key}}'>Edit</a>
 	                  &nbsp;&nbsp;
-	                  <a href="javascript:confirmDelete('/delete/{{greeting.key}}');">Delete</a>   &nbsp;&nbsp;   {{greeting.author.nickname}}@{{ greeting.date.year}}-{{ greeting.date.month}}-{{ greeting.date.day}} {{ greeting.date.hour}}:{{ greeting.date.minute}}</td>
+	                  <a href="javascript:confirmDelete('/delete/{{greeting.key}}');">Delete</a>
+	           {%endifequal%}       
+	                     &nbsp;&nbsp;   {{greeting.author.nickname}}@{{ greeting.date.year}}-{{ greeting.date.month}}-{{ greeting.date.day}} {{ greeting.date.hour}}:{{ greeting.date.minute}}
+	                     
+	                     <br>
+	                     <br>
+	                     It is {% greeting.date.time "H:m" %}
+
+	                     </td>
         </tr>		
 </table>
 
@@ -40,6 +50,7 @@ Responses :
 	{% for reply in replys %}	
 	<div class="oneReply">
     	<div class="reponse">Response from : 
+        <a {%ifnotequal reply.url '' %} href="{{reply.url}}" {%endifnotequal%}>
         <span>
         {% ifequal reply.author Null%}
         anonymous
@@ -48,14 +59,15 @@ Responses :
         {{reply.author.nickname}}
         {% endifnotequal%}
         </span>
+      </a>
         </div>
-        <div class="replyContent">{{reply.content}}</div>
+        <div class="replyContent">{{reply.content|linebreaksbr}}</div>
     </div>
     <div class="interval"></div> 
 	{% endfor %}
 	</div>
     <div class="addReply">
-    <form action="/reply/add" method="post">
+ <form action="/reply/add" method="post" onSubmit="return checkReply();">
     	<input type="hidden" name="upid" value="{{greeting.key}}">
     	Homepage:<br>
    	    <input type="text" name="url" size="30" maxlength="50">

@@ -18,13 +18,7 @@
         <tr bgcolor="#EEFFEE">
           <td valign="top" width="80%">
             <a href='/blog/{{greeting.key}}'>{{greeting.title}}</a></td>
-          <td align="right">
-          	{% ifequal curruser greeting.author%}                    
-	                  <a href='/edit/{{greeting.key}}'>Edit</a>
-	                  &nbsp;&nbsp;
-	                  <a href="javascript:confirmDelete('/delete/{{greeting.key}}');">Delete</a>
-	           {% endifequal %}
-          </td>
+          <td align="right">&nbsp;</td>
         </tr>
         <tr><td colspan="2">{{ greeting.content }}</td></tr>
         <tr>

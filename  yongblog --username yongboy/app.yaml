@@ -4,33 +4,23 @@ runtime: python
 api_version: 1
 
 handlers:
-- url: /style/(.*)
-  static_files: style/\1
-  upload: style/(.*)
+- url: /style
+  static_dir: style
   
-- url: /script/(.*)
-  static_files: script/\1
-  upload: script/(.*)
+- url: /script
+  static_dir: script
 
-- url: /images/(.*)
-  static_files: images/\1
-  upload: images/(.*)
+- url: /images
+  static_dir: images
 
-- url: /exception/(.*)
-  static_files: exception/\1
-  upload: exception/(.*)
+- url: /exception
+  static_dir: exception
   
-- url: /source/(.*)
-  static_files: source/\1
-  upload: source/(.*)
+- url: /source
+  static_dir: source
   
-- url: /HtmlEditor/(.*)
-  static_files: HtmlEditor/\1
-  upload: HtmlEditor/(.*)
-
-- url: /HtmlEditor/images/(.*)
-  static_files: HtmlEditor/images/\1
-  upload: HtmlEditor/images/(.*)
+- url: /HtmlEditor
+  static_dir: HtmlEditor
   
 - url: /reply/.*
   script: reply.py
@@ -40,4 +30,4 @@ handlers:
   
 
 - url: /.*
-  script: hi.py
+  script: blog.py

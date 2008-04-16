@@ -22,7 +22,7 @@ class TagBlog(webapp.RequestHandler):
       'greetings': greetings
     }
 
-    path = os.path.join(os.path.dirname(__file__), 'tagbloglist.html')
+    path = os.path.join(os.path.dirname(__file__), 'template/tagbloglist.html')
     self.response.out.write(template.render(path, template_values))
       
 

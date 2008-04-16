@@ -66,10 +66,10 @@ class ViewBlog(webapp.RequestHandler):
                             "FROM LogReply "
                             "WHERE upid = :1 "
                             "ORDER BY date DESC",bid)
-    #greeting.tags = greeting.tags.split('')
     template_values = {
       'greeting': greeting,
-      'replys': replys
+      'replys': replys,
+      'curruser': users.get_current_user()
     }
 
     path = os.path.join(os.path.dirname(__file__), 'template/viewblog.html')

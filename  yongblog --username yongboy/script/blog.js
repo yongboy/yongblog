@@ -15,3 +15,11 @@ function checkForm(){
 function getHtml(){
 	alert(navigator.userAgent);
 }
+
+function checkReply(){
+	var content = document.getElementById("content").value;
+	if(content==""){
+		alert("The Content of the Reply is Null!");
+		return false;
+	}
+}

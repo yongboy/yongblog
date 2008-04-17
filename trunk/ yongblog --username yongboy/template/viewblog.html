@@ -33,13 +33,7 @@ tags :
 	                  &nbsp;&nbsp;
 	                  <a href="javascript:confirmDelete('/delete/{{greeting.key}}');">Delete</a>
 	           {%endifequal%}       
-	                     &nbsp;&nbsp;   {{greeting.author.nickname}}@{{ greeting.date.year}}-{{ greeting.date.month}}-{{ greeting.date.day}} {{ greeting.date.hour}}:{{ greeting.date.minute}}
-	                     
-	                     <br>
-	                     <br>
-	                     It is {% greeting.date.time "H:m" %}
-
-	                     </td>
+	                     &nbsp;&nbsp;   {{greeting.author.nickname}}@{{ greeting.date.year}}-{{ greeting.date.month}}-{{ greeting.date.day}} {{ greeting.date.hour}}:{{ greeting.date.minute}}</td>
         </tr>		
 </table>
 

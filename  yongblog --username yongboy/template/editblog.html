@@ -1,14 +1,6 @@
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Edit blog</title>
-<link href="/style/style.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-<div class="blogTop">
-<span><a href="">Yongboy's Tiny blog</a></span>
-<div>Just One Google App Engine Demo </div>
-</div>
+{% extends "base.html" %}
+{% block content %}
+
 <div style="float:right;"><a href="/">Home</a></div>
      <div class="fdiv">
 		<div style="color:#777;float:left;"></div>		
@@ -33,9 +25,5 @@
 			</div>
 			<div><input type="submit" value="Update..."></div>	
 </form>
-<div align="center">
-<br />
-<hr class="footHr" />
-Copyright By <a href="mailto:yongboy@gmail.com">Yongboy</a> !</div>	
-</body>
-</html>
+
+{% endblock %}

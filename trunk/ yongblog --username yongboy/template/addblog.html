@@ -1,15 +1,6 @@
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Write One blog</title>
-<link href="/style/style.css" rel="stylesheet" type="text/css" />
-<script src="script/blog.js" type="text/javascript"></script>
-</head>
-<body>
-<div class="blogTop">
-<span><a href="">Yongboy's Tiny blog</a></span>
-<div>Just One Google App Engine Demo </div>
-</div>
+{% extends "base.html" %}
+{% block content %}
+
 <div style="float:right;"><a href="/">Home</a></div>
 <form action="/add" method="post" onSubmit="return checkForm();">
 <div>Write one blog :</div>
@@ -29,9 +20,5 @@
 <input type="submit" value="Save">
 			</div>	
 			</form>
-			<div align="center">
-<br />
-<hr class="footHr" />
-Copyright By <a href="mailto:yongboy@gmail.com">Yongboy</a> !</div>
-</body>
-</html>
+
+{% endblock %}

@@ -17,7 +17,7 @@
         </tr>
         <tr><td colspan="2">{{ greeting.content }}</td></tr>
         <tr>
-          <td colspan="2" align="right">{{greeting.author.nickname}}@{{ greeting.date.year}}-{{ greeting.date.month}}-{{ greeting.date.day}} {{ greeting.date.hour}}:{{ greeting.date.minute}}</td>
+          <td colspan="2" align="right">{{greeting.author.nickname}}@{{greeting.date|date:"Y-m-d H:i:s"}}</td>
         </tr>		
 		 {% endfor %}
 </table>

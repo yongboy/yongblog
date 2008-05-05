@@ -4,30 +4,17 @@ runtime: python
 api_version: 1
 
 handlers:
-- url: /style
-  static_dir: style
-  
-- url: /script
-  static_dir: script
-
-- url: /images
-  static_dir: images
+- url: /static
+  static_dir: static
 
 - url: /exception
   static_dir: exception
-  
-- url: /source
-  static_dir: source
-  
-- url: /HtmlEditor
-  static_dir: HtmlEditor
   
 - url: /reply/.*
   script: reply.py
 
 - url: /tags/.*
   script: tags.py
-  
 
 - url: /.*
   script: blog.py

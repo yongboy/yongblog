@@ -17,12 +17,12 @@ tags :
 </td></tr>
         <tr>
           <td align="right">
-          	{% ifequal curruser greeting.author%}
+          	{% if isCanEdit %}
           	<a href='/edit/{{greeting.key}}'>Edit</a>
 	                  &nbsp;&nbsp;
 	                  <a href="javascript:confirmDelete('/delete/{{greeting.key}}');">Delete</a>
-	           {%endifequal%}       
-	                     &nbsp;&nbsp;   {{greeting.author.nickname}}@{{ greeting.date.year}}-{{ greeting.date.month}}-{{ greeting.date.day}} {{ greeting.date.hour}}:{{ greeting.date.minute}}</td>
+	           {%endif%}       
+	                     &nbsp;&nbsp;   {{greeting.author.nickname}}@{{greeting.date|date:"Y-m-d H:i:s"}}</td>
         </tr>		
 </table>
 

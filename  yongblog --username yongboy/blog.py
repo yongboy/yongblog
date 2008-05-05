@@ -4,6 +4,7 @@ from google.appengine.ext.webapp import template
 import cgi
 import datetime
 import wsgiref.handlers
+import logging
 
 from google.appengine.ext import db
 from google.appengine.api import users
@@ -66,10 +67,23 @@ class ViewBlog(webapp.RequestHandler):
                             "FROM LogReply "
                             "WHERE upid = :1 "
                             "ORDER BY date DESC",bid)
+
+    isCurruser = users.get_current_user() == greeting.author
+    isAdmin = users.is_current_user_admin()
+
+    logging.debug('isCurruser = %s' %  (isCurruser))
+    logging.debug('isAdmin = %s' % (isAdmin))
+    
+    
+    if isCurruser or isAdmin:
+        isCanEdit = True
+    else:
+        isCanEdit = False
+
     template_values = {
       'greeting': greeting,
       'replys': replys,
-      'curruser': users.get_current_user()
+      'isCanEdit': isCanEdit
     }
 
     path = os.path.join(os.path.dirname(__file__), 'template/viewblog.html')
@@ -104,7 +118,7 @@ class EditBlog(webapp.RequestHandler):
       self.redirect(users.create_login_url(self.request.uri))
       
     greeting = db.get(bid)
-    if users.get_current_user() == greeting.author :
+    if users.get_current_user() == greeting.author or users.is_current_user_admin():
       template_values = {
         'greeting': greeting,
       }
@@ -120,7 +134,7 @@ class UpdateBlog(webapp.RequestHandler):
       self.redirect(users.create_login_url(self.request.uri))
       
     greeting = db.get(self.request.get('key'))
-    if users.get_current_user() == greeting.author:
+    if users.get_current_user() == greeting.author or users.is_current_user_admin():
       greeting.title = self.request.get('title')
       greeting.tags = self.request.get('tags').split(' ')
       greeting.content = self.request.get('content')
@@ -137,7 +151,7 @@ class DeleteBlog(webapp.RequestHandler):
       self.redirect("/exception/hasnoright.html")
       
     greeting = db.get(bid)
-    if users.get_current_user() == greeting.author:
+    if users.get_current_user() == greeting.author or users.is_current_user_admin():
       greeting.delete()
       self.redirect('/')
     else :
@@ -158,6 +172,7 @@ application = webapp.WSGIApplication([
 
 
 def main():
+  logging.getLogger().setLevel(logging.INFO)
   wsgiref.handlers.CGIHandler().run(application)
 
 

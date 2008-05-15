@@ -12,8 +12,8 @@ from google.appengine.api import users
 from google.appengine.ext import webapp
 
 import pojo
-sys.path.append('utils')
-from textconvert import text2html
+#sys.path.append('utils')
+
 
 class MainPage(webapp.RequestHandler):
   def get(self):
@@ -182,6 +182,13 @@ def main():
   wsgiref.handlers.CGIHandler().run(application)
 
 
-
+DIR_PATH = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
+EXTRA_PATHS = [
+  DIR_PATH,
+  #os.path.join(DIR_PATH, 'utils'),
+]
+sys.path = EXTRA_PATHS + sys.path
+logging.debug(sys.path)
+from utils.textconvert import text2html
 if __name__ == '__main__':
   main()

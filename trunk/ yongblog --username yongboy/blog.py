@@ -1,4 +1,5 @@
 import os
+import sys
 from google.appengine.ext.webapp import template
 
 import cgi
@@ -11,6 +12,8 @@ from google.appengine.api import users
 from google.appengine.ext import webapp
 
 import pojo
+sys.path.append('utils')
+from textconvert import text2html
 
 class MainPage(webapp.RequestHandler):
   def get(self):
@@ -105,7 +108,10 @@ class AddBlog(webapp.RequestHandler):
       greeting.author = users.get_current_user()
       greeting.title = self.request.get('title')
       greeting.tags = self.request.get('tags').split(' ')
-      greeting.content = self.request.get('content')
+      content = self.request.get('content')
+      greeting.content = content
+      if content:
+        greeting.content_converted = text2html(content)
       greeting.put()
       self.redirect('/')
     else :
@@ -174,6 +180,7 @@ application = webapp.WSGIApplication([
 def main():
   logging.getLogger().setLevel(logging.INFO)
   wsgiref.handlers.CGIHandler().run(application)
+
 
 
 if __name__ == '__main__':

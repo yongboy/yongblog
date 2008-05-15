@@ -6,6 +6,7 @@ class Greeting(db.Model):
   tags = db.StringListProperty(default=None)
   content = db.TextProperty()
   date = db.DateTimeProperty(auto_now_add=True)
+  content_converted = db.TextProperty()
 
 class LogReply(db.Model):
   upid = db.StringProperty()
